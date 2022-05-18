@@ -9,7 +9,7 @@ app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 
 mongoose
-  .connect("mongodb://0.0.0.0:27017/TheGreatLibrary")
+  .connect("mongodb://localhost:27017/TheGreatLibrary")
   .then(() => {
     app.listen(port, () => {
       console.info(
@@ -21,11 +21,4 @@ mongoose
 
 app.get("/", (req, res) => {
   return res.json({ hello: "world" });
-});
-
-app.post("/creating-store", (req, res) => {
-  const { name, adress, phone } = req.body;
-  addStore(name, adress, phone)
-    .then((store) => res.json(store))
-    .catch((err) => res.json(err));
 });
