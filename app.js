@@ -7,6 +7,13 @@ const mongoose = require("mongoose");
 app.use(express.static("public"));
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
+const routeBooks = require("./routes/shopRoute");
+const routeCart = require("./routes/cartRout");
+const routeWishlist = require("./routes/wishListRout");
+
+app.use("/books", routeBooks);
+app.use("/cart", routeCart);
+app.use("/whishlist", routeWishlist);
 
 mongoose
   .connect("mongodb://localhost:27017/TheGreatLibrary")
@@ -17,8 +24,12 @@ mongoose
       );
     });
   })
-  .catch((err) => console.error(err));
 
-app.get("/", (req, res) => {
-  return res.json({ hello: "world" });
-});
+
+  app.get("/*", function (req, res) {
+    res.status("404");
+    res.sendFile(path.join(__dirname, "/eror.html"));
+  });
+  
+
+
