@@ -7,8 +7,7 @@ const addBook = (title, description, price) => {
       description,
       price,
     });
-    book
-      .save()
+    Book.save()
       .then((book) => {
         resolve(book);
       })
@@ -18,7 +17,7 @@ const addBook = (title, description, price) => {
 
 const getAllBooks = () => {
   return new Promise((resolve, reject) => {
-    const book = Book.find()
+    Book.find()
       .then((books) => resolve(books))
       .catch((err) => reject(err));
   });
@@ -32,7 +31,6 @@ const getBook = (_id) => {
       .catch((err) => reject(err));
   });
 };
-
 
 function getBookByTitle() {
   var regex = new RegExp(req.params.title, "i"),
@@ -68,9 +66,12 @@ const deleteBook = (_id) => {
       });
   });
 };
-exports.addBook = addBook;
-exports.getAllBooks = getAllBooks;
-exports.getBook = getBook;
-exports.getBookByTitle = getBookByTitle;
-exports.updateBookt = updateBookt;
-exports.deleteBook = deleteBook;
+
+module.exports = {
+  addBook,
+  getAllBooks,
+  getBook,
+  getBookByTitle,
+  updateBookt,
+  deleteBook,
+};
