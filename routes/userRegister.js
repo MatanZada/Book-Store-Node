@@ -3,38 +3,11 @@ const express = require("express"),
     addUser = require('../controller/usersController')
 
 
-router.post("/", (req, res) => {
-    const {
-        userName,
-        userPhone,
-        userEmail,
-        password,
-        isVip
-    } = req.body;
-    addUser(userName,
-            userPhone,
-            userEmail,
-            password,
-            isVip)
+router.post("/signup", (req, res) => {
+    addUser(req.body)
         .then((usertDate) => res.json(usertDate))
         .catch((error) => res.json(error));
+    console.log(req.body);
 });
-
-
-// router.post('/', (req, res) => {
-//     const {
-//         userName,
-//         userPhone,
-//         userEmail,
-//         password,
-//         isVip
-//     } = req.body
-
-//     addUser(userName, userPhone, userEmail, password, isVip)
-//         .then((user) => res.json(user))
-//         .catch((err) => res.json(err));
-// });
-
-// router.post("/:userId", (req, res) => {});
 
 module.exports = router;

@@ -1,48 +1,48 @@
 const mongoose = require("mongoose");
 const crypto = require("crypto");
 const joi = require("joi");
-// const { string } = require("joi");
 
-const UserSchema = new mongoose.Schema({
+const userSchema = new mongoose.Schema({
     fullName: {
         type: String,
-        required: "The filed fullName is a required filed!",
+        required: true
     },
     phone: {
         type: String,
-        required: "The filed phone is a required filed!",
+        required: true
     },
     email: {
         type: String,
-        required: "The filed email is a required filed!",
+        required: true,
+        unique: true
     },
     password: {
         type: String,
-        required: "The filed password is a required filed!",
-        minlength: [6, "minimum password length is 6 characters"],
+        required: true,
+        minlength: [6, "minimum password length is 6 characters"]
     },
     isVip: {
         type: Boolean,
-        required: "The filed isVip is a required filed!",
+        required: true
     },
 }, { timestamps: true });
 
-UserSchema.methods.hashPassword = function() {
+userSchema.methods.hashPassword = function() {
     this.password = crypto
         .pbkdf2Sync(this.password, "", 1000, 64, `sha512`)
         .toString(`hex`);
 };
 
-UserSchema.methods.validateUser = function validate(params) {
+userSchema.methods.validateUser = function validate(params) {
     this.password = crypto
         .pbkdf2Sync(this.password, "", 1000, 64, `sha512`)
         .toString(`hex`);
 };
-UserSchema.methods.validateUserSchema = function() {
-    const joi = joi.object({
+userSchema.methods.validateUser = function() {
+    joi.object({
         password: joi.string().alphanum().min(6).max(30),
     });
     return joi;
 };
-
-module.exports = mongoose.model("User", UserSchema);
+const User = mongoose.model("User", userSchema);
+module.exports = User;
