@@ -15,6 +15,4 @@ const addUser = (userName, userPhone, userEmail, password, vip) => {
         });
     });
 };
-
-
 module.exports = addUser
