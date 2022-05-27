@@ -2,7 +2,8 @@ const express = require("express"),
     app = express(),
     port = process.env.PORT || 3000,
     path = require('path'),
-    mongoose = require("mongoose");
+    mongoose = require("mongoose"),
+    bodyParser = require('body-parser')
 
 // const routeBooks = require("./routes/bookRoute");
 // const routeCart = require("./routes/cartRoute");
@@ -16,20 +17,20 @@ app.use(
         extended: true,
     })
 );
+app.use(bodyParser.json());
 
 // app.use("/books", routeBooks);
 // app.use("/cart", routeCart);
 // app.use("/whishlist", routeWishlist);
+app.use("/", userRegister);
 
-
-mongoose.connect("mongodb://localhost:27017/TheGreatLibrary").then(() => {
+mongoose.connect("mongodb://localhost:27017/GreatLibrary").then(() => {
     app.listen(port, () => {
         console.info(
             `start server start listening on port http://localhost:${port}`
         );
     });
 });
-app.use("/", userRegister);
 
 app.get("/*", function(req, res) {
     res.status("404");

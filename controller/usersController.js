@@ -1,13 +1,13 @@
 const User = require("../models/user");
 
-const addUser = (userName, userPhone, userEmail, password, isVip) => {
+const addUser = (userName, userPhone, userEmail, password, vip) => {
     return new Promise((resolve, reject) => {
         let user = new User({
             userName,
             userPhone,
             userEmail,
             password,
-            isVip
+            vip
         });
 
         user.save((err, userData) => {

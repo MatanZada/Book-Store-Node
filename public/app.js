@@ -7,7 +7,10 @@ async function registerUser(e) {
     const userPhone = document.getElementById("userPhone").value
     const userEmail = document.getElementById("userEmail").value
     const password = document.getElementById("password").value
-    const isVip = document.getElementById("isVip").value
+    let isVip = document.getElementById("isVip").value
+
+    let vip = (isVip === "on" ? true : false)
+
     fetch('/signup', {
         method: 'POST',
         headers: {
@@ -18,7 +21,7 @@ async function registerUser(e) {
             userPhone,
             userEmail,
             password,
-            isVip
+            vip
         })
     }).then((res) => res.json())
 }

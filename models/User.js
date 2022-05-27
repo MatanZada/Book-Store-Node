@@ -3,15 +3,15 @@ const crypto = require("crypto");
 const joi = require("joi");
 
 const userSchema = new mongoose.Schema({
-    fullName: {
+    userName: {
         type: String,
         required: true
     },
-    phone: {
+    userPhone: {
         type: String,
         required: true
     },
-    email: {
+    userEmail: {
         type: String,
         required: true,
         unique: true
@@ -21,7 +21,7 @@ const userSchema = new mongoose.Schema({
         required: true,
         minlength: [6, "minimum password length is 6 characters"]
     },
-    isVip: {
+    vip: {
         type: Boolean,
         required: true
     },
