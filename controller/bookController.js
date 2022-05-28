@@ -13,13 +13,13 @@ const addBook = (title, description, price) => {
   });
 };
 
-// const getAllBooks = () => {
-//   return new Promise((resolve, reject) => {
-//     Book.find()
-//       .then((books) => resolve(books))
-//       .catch((err) => reject(err));
-//   });
-// };
+const getAllBooks = () => {
+  return new Promise((resolve, reject) => {
+    Book.find()
+      .then((books) => resolve(books))
+      .catch((err) => reject(err));
+  });
+};
 
 // const getBook = (_id) => {
 //   return new Promise((resolve, reject) => {
@@ -41,17 +41,17 @@ const addBook = (title, description, price) => {
 //   });
 // }
 
-// const updateBookt = (title, description, price) => {
-//   return new Promise((resolve, reject) => {
-//     Book.findByIdAndUpdate(_id, { $set: { title, description, price } })
-//       .then((book) => {
-//         resolve(book);
-//       })
-//       .catch((err) => {
-//         reject(err);
-//       });
-//   });
-// };
+const updateBook = (_id, title, description, price) => {
+  return new Promise((resolve, reject) => {
+    Book.findByIdAndUpdate(_id, { $set: { title, description, price } })
+      .then((book) => {
+        resolve(book);
+      })
+      .catch((err) => {
+        reject(err);
+      });
+  });
+};
 
 // const deleteBook = (_id) => {
 //   return new Promise((resolve, reject) => {
@@ -67,9 +67,9 @@ const addBook = (title, description, price) => {
 
 module.exports = {
   addBook,
-  // getAllBooks,
+  getAllBooks,
   // getBook,
   // getBookByTitle,
-  // updateBookt,
+  updateBook,
   // deleteBook,
 };

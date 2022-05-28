@@ -3,10 +3,10 @@ const router = express.Router();
 
 const {
   addBook,
-  // getAllBooks,
+  getAllBooks,
   // getBook,
   // getBookByTitle,
-  // updateBook,
+  updateBook,
   // deleteBook,
 } = require("../controller/bookController");
 
@@ -26,24 +26,13 @@ router.post("/insertNewBook", (req, res) => {
 //     });
 // });
 
-// router.post("/", (req, res) => {
-//   const title = req.body.title;
-//   const description = req.body.description;
-//   const price = req.body.price;
-
-//   addBook(title, description, price)
-//     .then((book) => res.json(book))
-//     .catch((err) => res.json(err));
-// });
-// router.get("/", (req, res) => {
-//   getAllBooks()
-//     .then((books) => {
-//       res.json(books);
-//     })
-//     .catch((err) => {
-//       res.json(err);
-//     });
-// });
+router.get("/", (req, res) => {
+  getAllBooks()
+    .then((books) => {
+      res.json(books);
+    })
+    .catch((error) => res.json(error));
+});
 
 // router.get("/:theid", (req, res) => {
 //   getBook(req.params.theid)
@@ -55,19 +44,20 @@ router.post("/insertNewBook", (req, res) => {
 //     });
 // });
 
-// router.put("/:id", (req, res) => {
-//   const id = req.params.id;
-//   const title = req.body.title;
-//   const description = req.body.description;
-//   const price = req.body.price;
-//   updateBook(id, title, description, price)
-//     .then((book) => {
-//       console.log(book);
-//     })
-//     .catch((err) => {
-//       res.json(err);
-//     });
-// });
+router.put("/:id", (req, res) => {
+  const id = req.params.id;
+  const title = req.body.title;
+  const description = req.body.description;
+  const price = req.body.price;
+  updateBook(id, title, description, price)
+    .then((book) => {
+      console.log(book);
+    })
+    .catch((err) => {
+      res.json(err);
+    });
+});
+
 // //   router.route('/product/name/:name')
 // //   .get(function(req, res) {}
 
