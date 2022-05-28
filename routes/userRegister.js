@@ -2,7 +2,6 @@ const express = require("express"),
     router = express.Router(),
     addUser = require('../controller/usersController')
 
-
 router.post("/signup", (req, res) => {
     let {
         userName,
@@ -11,6 +10,7 @@ router.post("/signup", (req, res) => {
         password,
         vip
     } = req.body
+
     addUser(userName,
             userPhone,
             userEmail,
