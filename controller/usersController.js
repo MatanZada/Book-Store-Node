@@ -9,7 +9,6 @@ const addUser = (userName, userPhone, userEmail, password, vip) => {
             password,
             vip
         });
-
         user.save((err, userData) => {
             userData ? resolve(userData) : reject(err);
         });
