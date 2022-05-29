@@ -13,39 +13,27 @@ const addBook = (title, description, price) => {
   });
 };
 
-const getAllBooks = () => {
+const getBook = (_id) => {
   return new Promise((resolve, reject) => {
-    Book.find()
-      .then((books) => resolve(books))
-      .catch((err) => reject(err));
+    Book.findById(_id, (err, bookData) => {
+      bookData ? resolve(bookData) : reject(err);
+    });
   });
 };
 
-// const getBook = (_id) => {
-//   return new Promise((resolve, reject) => {
-//     Book.findById(_id)
-//       .lean()
-//       .then((book) => resolve(book))
-//       .catch((err) => reject(err));
-//   });
-// };
-
-// function getBookByTitle() {
-//   var regex = new RegExp(req.params.title, "i"),
-//     query = { description: regex };
-//   Book.find(query, function (err, books) {
-//     if (err) {
-//       res.json(err);
-//     }
-//     res.json(books);
-//   });
-// }
+const getAllBooks = () => {
+  return new Promise((resolve, reject) => {
+    Book.find().then((bookData) => {
+      bookData ? resolve(bookData) : reject(err);
+    });
+  });
+};
 
 const updateBook = (_id, title, description, price) => {
   return new Promise((resolve, reject) => {
     Book.findByIdAndUpdate(_id, { $set: { title, description, price } })
-      .then((book) => {
-        resolve(book);
+      .then((bookData) => {
+        resolve(bookData);
       })
       .catch((err) => {
         reject(err);
@@ -53,23 +41,24 @@ const updateBook = (_id, title, description, price) => {
   });
 };
 
-// const deleteBook = (_id) => {
-//   return new Promise((resolve, reject) => {
-//     Book.findByIdAndDelete(_id)
-//       .then((book) => {
-//         resolve(book);
-//       })
-//       .catch((err) => {
-//         reject(err);
-//       });
-//   });
-// };
+const deleteBook = (_id) => {
+  return new Promise((resolve, reject) => {
+    Book.deleteOne(
+      {},
+      {
+        _id,
+      },
+      (err, gookData) => {
+        err ? reject(err) : resolve(gookData);
+      }
+    );
+  });
+};
 
 module.exports = {
   addBook,
+  getBook,
   getAllBooks,
-  // getBook,
-  // getBookByTitle,
   updateBook,
-  // deleteBook,
+  deleteBook,
 };
