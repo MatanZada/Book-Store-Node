@@ -7,7 +7,7 @@ async function insertBookForm(event) {
   const description = document.getElementById("bookDescription").value;
   const price = document.getElementById("bookPrice").value;
 
-  fetch("/insertNewBook", {
+  fetch("/book", {
     method: "POST",
     headers: {
       "content-type": "application/json",
@@ -22,22 +22,22 @@ async function insertBookForm(event) {
 
 $('[data-role="getAllBooks"]').click(function () {
   $.get("/book", (resolve) => {
-    const theBooks = $('[data-role="books"]');
-    theBooks.html("");
+    const resultAllBooks = $('[data-role="books"]');
+    resultAllBooks.html("");
     $.each(resolve, (_, book) => {
-      const divBook = $(`<div data-role=${book._id}>`);
-      divBook.append(`<span>name:${book.title}</span><br>`);
-      theBooks.append(divBook);
+      const pointerDivBook = $(`<div data-role=${book._id}>`);
+      pointerDivBook.append(`<span>name:${book.title}</span><br>`);
+      resultAllBooks.append(pointerDivBook);
     });
   });
 });
 
 $('[data-role="updateBook"]').click(function () {
-  const theId = $('[data-role="theId"]').val();
+  const dataIdInformation = $('[data-role="dataIdInformation"]').val();
   const title = $('[data-role="title"]').val();
   const description = $('[data-role="description"]').val();
   const price = $('[data-role="price"]').val();
-  fetch("/book/" + theId, {
+  fetch("/book/" + dataIdInformation, {
     method: "PUT",
     headers: {
       "content-type": "application/json",
@@ -47,5 +47,28 @@ $('[data-role="updateBook"]').click(function () {
       description,
       price,
     }),
+  }).then((res) => res.json(res));
+});
+
+$('[data-role="getBook"]').click(function () {
+  const theid = $('[data-role="dataIdInformation"]').val();
+  $.get("/book/" + theid, (resolve) => {
+    const bookId = $('[data-role="book"]');
+    bookId.html("");
+    $.each(resolve, (_, book) => {
+      const divbook = $(`<div ${book} >`);
+      divbook.append(`<span> ${book}</span><br>`);
+      bookId.append(divbook);
+    });
+  });
+});
+
+$('[data-role="deleteBook"]').click(function () {
+  const dataIdInformationDelete = $('[data-role="dataIdInformation"]').val();
+  fetch("/book/:id" + dataIdInformationDelete, {
+    method: "DELETE",
+    headers: {
+      "content-type": "application/json",
+    },
   }).then((res) => res.json(res));
 });
