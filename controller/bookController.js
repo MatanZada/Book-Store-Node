@@ -13,63 +13,52 @@ const addBook = (title, description, price) => {
   });
 };
 
-// const getAllBooks = () => {
-//   return new Promise((resolve, reject) => {
-//     Book.find()
-//       .then((books) => resolve(books))
-//       .catch((err) => reject(err));
-//   });
-// };
+const getBook = (_id) => {
+  return new Promise((resolve, reject) => {
+    Book.findById(_id, (err, bookData) => {
+      bookData ? resolve(bookData) : reject(err);
+    });
+  });
+};
 
-// const getBook = (_id) => {
-//   return new Promise((resolve, reject) => {
-//     Book.findById(_id)
-//       .lean()
-//       .then((book) => resolve(book))
-//       .catch((err) => reject(err));
-//   });
-// };
+const getAllBooks = () => {
+  return new Promise((resolve, reject) => {
+    Book.find().then((bookData) => {
+      bookData ? resolve(bookData) : reject(err);
+    });
+  });
+};
 
-// function getBookByTitle() {
-//   var regex = new RegExp(req.params.title, "i"),
-//     query = { description: regex };
-//   Book.find(query, function (err, books) {
-//     if (err) {
-//       res.json(err);
-//     }
-//     res.json(books);
-//   });
-// }
+const updateBook = (_id, title, description, price) => {
+  return new Promise((resolve, reject) => {
+    Book.findByIdAndUpdate(_id, { $set: { title, description, price } })
+      .then((bookData) => {
+        resolve(bookData);
+      })
+      .catch((err) => {
+        reject(err);
+      });
+  });
+};
 
-// const updateBookt = (title, description, price) => {
-//   return new Promise((resolve, reject) => {
-//     Book.findByIdAndUpdate(_id, { $set: { title, description, price } })
-//       .then((book) => {
-//         resolve(book);
-//       })
-//       .catch((err) => {
-//         reject(err);
-//       });
-//   });
-// };
-
-// const deleteBook = (_id) => {
-//   return new Promise((resolve, reject) => {
-//     Book.findByIdAndDelete(_id)
-//       .then((book) => {
-//         resolve(book);
-//       })
-//       .catch((err) => {
-//         reject(err);
-//       });
-//   });
-// };
+const deleteBook = (_id) => {
+  return new Promise((resolve, reject) => {
+    Book.deleteOne(
+      {},
+      {
+        _id,
+      },
+      (err, gookData) => {
+        err ? reject(err) : resolve(gookData);
+      }
+    );
+  });
+};
 
 module.exports = {
   addBook,
-  // getAllBooks,
-  // getBook,
-  // getBookByTitle,
-  // updateBookt,
-  // deleteBook,
+  getBook,
+  getAllBooks,
+  updateBook,
+  deleteBook,
 };
