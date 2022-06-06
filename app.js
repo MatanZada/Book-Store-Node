@@ -5,7 +5,7 @@ const express = require("express"),
   mongoose = require("mongoose"),
   bodyParser = require("body-parser");
 
-// const routeCart = require("./routes/cartRoute");
+ const routeCart = require("./routes/cartRoute");
 // const routeWishlist = require("./routes/wishListRoute");
 const userRegister = require("./routes/userRegister");
 const bookRoute = require("./routes/bookRoute");
@@ -19,7 +19,7 @@ app.use(
 );
 app.use(bodyParser.json());
 
-// app.use("/cart", routeCart);
+  app.use("/cart", routeCart);
 // app.use("/whishlist", routeWishlist);
 app.use("/", userRegister);
 app.use("/", bookRoute);
