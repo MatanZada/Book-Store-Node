@@ -6,7 +6,7 @@ const express = require("express"),
   bodyParser = require("body-parser");
 
 // const routeCart = require("./routes/cartRoute");
-// const routeWishlist = require("./routes/wishListRoute");
+const wishListRoute = require("./routes/wishlistRoute");
 const userRegister = require("./routes/userRegister");
 const bookRoute = require("./routes/bookRoute");
 
@@ -20,7 +20,7 @@ app.use(
 app.use(bodyParser.json());
 
 // app.use("/cart", routeCart);
-// app.use("/whishlist", routeWishlist);
+app.use("/whishlist", wishListRoute);
 app.use("/", userRegister);
 app.use("/book", bookRoute);
 
