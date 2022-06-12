@@ -6,10 +6,10 @@ const cartSchema = new mongoose.Schema(
           type: String,
           required: "The filed title is a required filed!",
         },
-        price: {
-          type: Number,
-          required: "The filed price is a required filed!",
-        },
+        // price: {
+        //   type: Number,
+        //   required: "The filed price is a required filed!",
+        // },
       },
       {
         timestamps: true,
