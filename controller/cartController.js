@@ -1,4 +1,7 @@
+const { reject } = require("lodash");
+const { resolve } = require("path");
 const Cart = require("../models/Cart");
+// const Book = require("../models/Book");
 
 const getAllBooksInCart = () => {
   return new Promise((resolve, reject) => {
@@ -7,4 +10,18 @@ const getAllBooksInCart = () => {
       .catch((err) => reject(err));
   });
 };
-module.exports = getAllBooksInCart
+const insertBookToCart = (title) => {
+  return new Promise((resolve, reject) => {
+    const cart = new Cart({
+      title
+    });
+    cart
+      .save()
+      .then((theBookChosen) => {
+        resolve(theBookChosen);
+      })
+      .catch((err) => reject(err));
+  });
+};
+module.exports = {getAllBooksInCart, insertBookToCart}
+

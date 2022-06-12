@@ -20,15 +20,39 @@ async function insertBookForm(event) {
   }).then((res) => res.json(res));
 }
 
-$('[data-role="getAllBooks"]').click(function () {
-  $.get("/book", (resolve) => {
-    const resultAllBooks = $('[data-role="books"]');
-    resultAllBooks.html("");
-    $.each(resolve, (_, book) => {
-      const pointerDivBook = $(`<div data-role=${book._id}>`);
-      pointerDivBook.append(`<span>name:${book.title}</span><br>`);
-      resultAllBooks.append(pointerDivBook);
+function populateOptions(selectElement, itratable) {
+  selectElement.html("");
+  $.each(itratable, function (_, itrate) {
+    const divOfBook = $("<div>");
+    divOfBook.text(itrate.title);
+    divOfBook.attr("value", itrate._id);
+    const addToCart = $("<button>add to cart</button>");
+    addToCart.attr("value", itrate._id);
+    divOfBook.append(addToCart);
+    selectElement.append(divOfBook);
+
+    addToCart.click(function () {
+      const bookToCart = itrate.title;
+      console.log(bookToCart);
+      $.post("/cart", { bookToCart }, (resolve) => {
+        console.log(resolve);
+      });
     });
+  });
+}
+
+$('[data-role="getAllBooks"]').click(function () {
+  $.get("/book", (response) => {
+    const wrapperBooks = $('[data-role="books"]');
+    populateOptions(wrapperBooks, response);
+
+    //   const resultAllBooks = $('[data-role="books"]');
+    //   resultAllBooks.html("");
+    //   $.each(resolve, (_, book) => {
+    //     const pointerDivBook = $(`<div data-role=${book._id}>`);
+    //     pointerDivBook.append(`<span>name:${book.title}</span><br>`);
+    //     resultAllBooks.append(pointerDivBook);
+    //   });
   });
 });
 
