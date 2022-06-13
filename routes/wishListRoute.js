@@ -6,7 +6,7 @@ const { addBookWishlist } = require("../controller/wishlistController");
 router.post("/", (req, res) => {
   const { title, description, price } = req.body;
   addBookWishlist(title, description, price)
-    .then((bookDate) => res.json(bookDate))
+    .then((wishlistDate) => res.json(wishlistDate))
     .catch((error) => res.json(error));
 });
 
