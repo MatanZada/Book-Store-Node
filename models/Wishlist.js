@@ -22,5 +22,5 @@ const WishlistSchema = new mongoose.Schema(
   }
 );
 WishlistSchema.methods.testFunc = function testFunc(params) {};
-const Wishlist = mongoose.model("User", userSchema);
+const Wishlist = mongoose.model("Wishlist", WishlistSchema);
 module.exports = Wishlist;
