@@ -3,6 +3,7 @@ const router = express.Router();
 const {
   getAllBooksInCart,
   insertBookToCart,
+  deleteBookFromCart
 } = require("../controller/cartController.js");
 router.get("/", (req, res) => {
   getAllBooksInCart()
@@ -21,4 +22,16 @@ router.post("/", (req, res) => {
     .then((theBookChosen) => res.json(theBookChosen))
     .catch((err) => res.json(err));
 });
+
+router.delete("/:id", (req, res) => {
+  const _id = req.params.id;
+  deleteBookFromCart(_id)
+    .then((bookRemoved) => {
+      console.log(bookRemoved);
+    })
+    .catch((err) => {
+      res.json(err);
+    });
+});
+
 module.exports = router;

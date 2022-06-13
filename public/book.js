@@ -45,14 +45,6 @@ $('[data-role="getAllBooks"]').click(function () {
   $.get("/book", (response) => {
     const wrapperBooks = $('[data-role="books"]');
     populateOptions(wrapperBooks, response);
-
-    //   const resultAllBooks = $('[data-role="books"]');
-    //   resultAllBooks.html("");
-    //   $.each(resolve, (_, book) => {
-    //     const pointerDivBook = $(`<div data-role=${book._id}>`);
-    //     pointerDivBook.append(`<span>name:${book.title}</span><br>`);
-    //     resultAllBooks.append(pointerDivBook);
-    //   });
   });
 });
 
@@ -96,3 +88,4 @@ $('[data-role="deleteBook"]').click(function () {
     },
   }).then((res) => res.json(res));
 });
+
