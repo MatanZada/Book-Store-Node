@@ -11,7 +11,6 @@ function populateOptionsWishlist(selectElement, itratable) {
     const div = $("<div>");
     div.text(itrate.title);
     div.text(itrate.description);
-    div.text(itrate.price);
     div.attr("value", itrate._id);
     div.append(`<button>remove book from Wishlist</button>`);
     selectElement.append(div);

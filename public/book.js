@@ -55,7 +55,6 @@ function populateOptionsWishlist(selectElement, itratable) {
       const bookToWishlist = {
         title: itrateW.title,
         description: itrateW.description,
-        price: itrateW.price,
       };
       console.log(bookToWishlist);
       $.post("/wishlist", { bookToWishlist }, (response) => {
