@@ -18,11 +18,13 @@ const addBookWishlist = () => {
   });
 };
 
-const getAllBookWishlist = () => {
+const getAllBookWishlist = (title) => {
   return new Promise((resolve, reject) => {
-    Wishlist.find().then((wishlistData) => {
-      wishlistData ? resolve(wishlistData) : reject(err);
-    });
+    Wishlist.find({
+      title,
+    })
+      .then((wishlistData) => resolve(wishlistData))
+      .catch((err) => reject(err));
   });
 };
 

@@ -18,7 +18,6 @@ router.get("/", (req, res) => {
 
 router.post("/", (req, res) => {
   const bookToWishlist = req.body.bookToWishlist;
-  // const price = req.body
   getAllBookWishlist(bookToWishlist)
     .then((theBookChosen) => res.json(theBookChosen))
     .catch((err) => res.json(err));

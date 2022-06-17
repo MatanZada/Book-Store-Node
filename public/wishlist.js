@@ -6,6 +6,7 @@ $('[data-role="getAllBooksInWishlist"]').click(function () {
 });
 
 function populateOptionsWishlist(selectElement, itratable) {
+  debugger;
   selectElement.html("");
   $.each(itratable, function (_, itrate) {
     const div = $("<div>");
