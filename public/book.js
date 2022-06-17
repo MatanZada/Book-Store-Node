@@ -61,8 +61,8 @@ function populateOptionsWishlist(selectElement, itratable) {
         price: itrateW.price,
       };
       console.log(bookToWishlist);
-      $.post("/wishlist", { bookToWishlist }, (resolve) => {
-        console.log(resolve);
+      $.post("/wishlist", { bookToWishlist }, (res) => {
+        console.log(res);
       });
     });
   });

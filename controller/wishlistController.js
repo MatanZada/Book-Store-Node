@@ -1,3 +1,5 @@
+const { reject } = require("lodash");
+const { resolve } = require("path");
 const Wishlist = require("../models/Wishlist");
 
 const addBookWishlist = () => {
@@ -7,9 +9,12 @@ const addBookWishlist = () => {
       description,
       price,
     });
-    wishlist.save((err, wishlistData) => {
-      wishlistData ? resolve(wishlistData) : reject(err);
-    });
+    wishlist
+      .save()
+      .then((theBookChosen) => {
+        resolve(theBookChosen);
+      })
+      .catch((err) => reject(err));
   });
 };
 

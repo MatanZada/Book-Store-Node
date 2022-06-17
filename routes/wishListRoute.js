@@ -3,13 +3,13 @@ const router = express.Router();
 
 const {
   addBookWishlist,
-  insertBookToWishlist,
+  getAllBookWishlist,
 } = require("../controller/wishlistController");
 
 router.get("/", (req, res) => {
   addBookWishlist()
-    .then((booksInCart) => {
-      res.json(booksInCart);
+    .then((booksInWishlist) => {
+      res.json(booksInWishlist);
     })
     .catch((err) => {
       res.json(err);
@@ -19,7 +19,7 @@ router.get("/", (req, res) => {
 router.post("/", (req, res) => {
   const bookToWishlist = req.body.bookToWishlist;
   // const price = req.body
-  insertBookToWishlist(bookToWishlist)
+  getAllBookWishlist(bookToWishlist)
     .then((theBookChosen) => res.json(theBookChosen))
     .catch((err) => res.json(err));
 });
