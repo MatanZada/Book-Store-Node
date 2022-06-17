@@ -6,8 +6,9 @@ const {
   getAllBookWishlist,
 } = require("../controller/wishlistController");
 
-router.get("/", (req, res) => {
-  addBookWishlist()
+router.post("/", (req, res) => {
+  const { title, description } = req.body.bookToWishlist;
+  addBookWishlist(title, description)
     .then((booksInWishlist) => {
       res.json(booksInWishlist);
     })
@@ -17,8 +18,8 @@ router.get("/", (req, res) => {
 });
 
 router.post("/", (req, res) => {
-  const bookToWishlist = req.body.bookToWishlist;
-  getAllBookWishlist(bookToWishlist)
+  const { title, description } = req.body.bookToWishlist;
+  getAllBookWishlist(title, description)
     .then((theBookChosen) => res.json(theBookChosen))
     .catch((err) => res.json(err));
 });
