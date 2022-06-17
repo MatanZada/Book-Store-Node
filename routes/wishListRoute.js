@@ -1,13 +1,26 @@
 const express = require("express");
 const router = express.Router();
 
-const { addBookWishlist } = require("../controller/wishlistController");
+const {
+  addBookWishlist,
+  insertBookToWishlist,
+} = require("../controller/wishlistController");
 
-router.post("/", (req, res) => {
-  const { title, description, price } = req.body;
-  addBookWishlist(title, description, price)
-    .then((wishlistDate) => res.json(wishlistDate))
-    .catch((error) => res.json(error));
+router.get("/", (req, res) => {
+  addBookWishlist()
+    .then((booksInCart) => {
+      res.json(booksInCart);
+    })
+    .catch((err) => {
+      res.json(err);
+    });
 });
 
+router.post("/", (req, res) => {
+  const bookToWishlist = req.body.bookToWishlist;
+  // const price = req.body
+  insertBookToWishlist(bookToWishlist)
+    .then((theBookChosen) => res.json(theBookChosen))
+    .catch((err) => res.json(err));
+});
 module.exports = router;
