@@ -1,5 +1,3 @@
-const { reject } = require("lodash");
-const { resolve } = require("path");
 const Wishlist = require("../models/Wishlist");
 
 const addBookWishlist = () => {
@@ -18,10 +16,12 @@ const addBookWishlist = () => {
   });
 };
 
-const getAllBookWishlist = (title) => {
+const getAllBookWishlist = (title, description, price) => {
   return new Promise((resolve, reject) => {
     Wishlist.find({
       title,
+      description,
+      price,
     })
       .then((wishlistData) => resolve(wishlistData))
       .catch((err) => reject(err));

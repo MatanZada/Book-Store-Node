@@ -6,11 +6,12 @@ $('[data-role="getAllBooksInWishlist"]').click(function () {
 });
 
 function populateOptionsWishlist(selectElement, itratable) {
-  debugger;
   selectElement.html("");
   $.each(itratable, function (_, itrate) {
     const div = $("<div>");
     div.text(itrate.title);
+    div.text(itrate.description);
+    div.text(itrate.price);
     div.attr("value", itrate._id);
     div.append(`<button>remove book from Wishlist</button>`);
     selectElement.append(div);

@@ -43,8 +43,6 @@ function populateOptions(selectElement, itratable) {
 //post book to wishlist function
 function populateOptionsWishlist(selectElement, itratable) {
   selectElement.html("");
-  debugger;
-
   $.each(itratable, function (_, itrateW) {
     const divOfBookWishlist = $("<div/>");
     divOfBookWishlist.text(itrateW.title, itrateW.description, itrateW.price);
@@ -53,7 +51,6 @@ function populateOptionsWishlist(selectElement, itratable) {
     addToWishlist.attr("value", itrateW._id);
     divOfBookWishlist.append(addToWishlist);
     selectElement.append(divOfBookWishlist);
-
     addToWishlist.click(function () {
       const bookToWishlist = {
         title: itrateW.title,
@@ -61,8 +58,8 @@ function populateOptionsWishlist(selectElement, itratable) {
         price: itrateW.price,
       };
       console.log(bookToWishlist);
-      $.post("/wishlist", { bookToWishlist }, (res) => {
-        console.log(res);
+      $.post("/wishlist", { bookToWishlist }, (response) => {
+        console.log(response);
       });
     });
   });
@@ -74,13 +71,6 @@ $('[data-role="getAllBooks"]').click(function () {
     const wrapperBook = $('[data-role="book"]');
     populateOptions(wrapperBooks, response);
     populateOptionsWishlist(wrapperBook, response);
-    //   const resultAllBooks = $('[data-role="books"]');
-    //   resultAllBooks.html("");
-    //   $.each(resolve, (_, book) => {
-    //     const pointerDivBook = $(`<div data-role=${book._id}>`);
-    //     pointerDivBook.append(`<span>name:${book.title}</span><br>`);
-    //     resultAllBooks.append(pointerDivBook);
-    //   });
   });
 });
 
