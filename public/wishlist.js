@@ -1,11 +1,11 @@
 $('[data-role="getAllBooksInWishlist"]').click(function () {
   $.get("/wishlist", (response) => {
-    const wrapperBooks = $('[data-role="wraperBooks"]');
-    populateOptions(wrapperBooks, response);
+    const wrapperBook = $('[data-role="wraperBooks"]');
+    populateOptionsWishlist(wrapperBook, response);
   });
 });
 
-function populateOptions(selectElement, itratable) {
+function populateOptionsWishlist(selectElement, itratable) {
   selectElement.html("");
   $.each(itratable, function (_, itrate) {
     const div = $("<div>");
