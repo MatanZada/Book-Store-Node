@@ -20,7 +20,7 @@ app.use(
 app.use(bodyParser.json());
 
 // app.use("/cart", routeCart);
-app.use("/whishlist", wishListRoute);
+app.use("/wishlist", wishListRoute);
 app.use("/", userRegister);
 app.use("/book", bookRoute);
 
