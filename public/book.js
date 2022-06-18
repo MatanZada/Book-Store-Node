@@ -40,6 +40,7 @@ function populateOptions(selectElement, itratable) {
     });
   });
 }
+<<<<<<< HEAD
 //post book to wishlist function
 function populateOptionsWishlist(selectElement, itratable) {
   selectElement.html("");
@@ -64,13 +65,27 @@ function populateOptionsWishlist(selectElement, itratable) {
     });
   });
 }
+=======
+>>>>>>> 8a5f05bb6e90306b78dc1c1f492138327f667a61
 
 $('[data-role="getAllBooks"]').click(function () {
   $.get("/book", (response) => {
     const wrapperBooks = $('[data-role="books"]');
+<<<<<<< HEAD
     const wrapperBook = $('[data-role="book"]');
     populateOptions(wrapperBooks, response);
     populateOptionsWishlist(wrapperBook, response);
+=======
+    populateOptions(wrapperBooks, response);
+
+    //   const resultAllBooks = $('[data-role="books"]');
+    //   resultAllBooks.html("");
+    //   $.each(resolve, (_, book) => {
+    //     const pointerDivBook = $(`<div data-role=${book._id}>`);
+    //     pointerDivBook.append(`<span>name:${book.title}</span><br>`);
+    //     resultAllBooks.append(pointerDivBook);
+    //   });
+>>>>>>> 8a5f05bb6e90306b78dc1c1f492138327f667a61
   });
 });
 
