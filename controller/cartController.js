@@ -9,6 +9,7 @@ const getAllBooksInCart = () => {
       .catch((err) => reject(err));
   });
 };
+
 const insertBookToCart = (title) => {
   return new Promise((resolve, reject) => {
     const cart = new Cart({

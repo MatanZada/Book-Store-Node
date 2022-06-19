@@ -1,6 +1,6 @@
 const Wishlist = require("../models/Wishlist");
 
-const addBookWishlist = (title, description, price) => {
+const addBookWishlist = (title, description) => {
   return new Promise((resolve, reject) => {
     let wishlist = new Wishlist({
       title,
@@ -12,18 +12,15 @@ const addBookWishlist = (title, description, price) => {
   });
 };
 
-const getAllBookWishlist = (title, description, price) => {
+const getAllBookWishlist = () => {
   return new Promise((resolve, reject) => {
-    Wishlist.find({
-      title,
-      description,
-    })
-      .then((wishlistData) => resolve(wishlistData))
-      .catch((err) => reject(err));
+    Wishlist.find().then((wishlistData) => {
+      wishlistData ? resolve(wishlistData) : reject(err);
+    });
   });
 };
 
-const deleteOneBookWishlist = () => {
+const deleteOneBookWishlist = (_id) => {
   return new Promise((resolve, reject) => {
     Wishlist.deleteOne(
       {},

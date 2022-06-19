@@ -17,10 +17,11 @@ router.post("/", (req, res) => {
     });
 });
 
-router.post("/", (req, res) => {
-  const { title, description } = req.body.bookToWishlist;
+router.get("/", (req, res) => {
+  const { title, description } = req.body;
   getAllBookWishlist(title, description)
-    .then((theBookChosen) => res.json(theBookChosen))
+    .then((wishlistData) => res.json(wishlistData))
     .catch((err) => res.json(err));
 });
+
 module.exports = router;
