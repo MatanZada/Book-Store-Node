@@ -4,6 +4,7 @@ const {
   getAllBooksInCart,
   insertBookToCart,
 } = require("../controller/cartController.js");
+
 router.get("/", (req, res) => {
   getAllBooksInCart()
     .then((booksInCart) => {
@@ -15,7 +16,7 @@ router.get("/", (req, res) => {
 });
 
 router.post("/", (req, res) => {
-  const bookToCart = req.body.bookToCart
+  const bookToCart = req.body.bookToCart;
   // const price = req.body
   insertBookToCart(bookToCart)
     .then((theBookChosen) => res.json(theBookChosen))
