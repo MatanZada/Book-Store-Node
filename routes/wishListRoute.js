@@ -4,6 +4,7 @@ const router = express.Router();
 const {
   addBookWishlist,
   getAllBookWishlist,
+  deleteOneBookWishlist,
 } = require("../controller/wishlistController");
 
 router.post("/", (req, res) => {
@@ -24,4 +25,9 @@ router.get("/", (req, res) => {
     .catch((err) => res.json(err));
 });
 
+router.delete("/:delById", (req, res) => {
+  deleteOneBookWishlist(req.params.delById)
+    .then((wishlistData) => res.json(wishlistData))
+    .catch((error) => res.json(error));
+});
 module.exports = router;
