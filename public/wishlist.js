@@ -19,12 +19,12 @@ function populateOptionsWishlist(selectElement, itratable) {
     selectElement.append(div);
   });
   $('[data-role="btnDeleteWishlist"]').click(function () {
-    let oneGuestDelete = $('[data-role="testing"]').val();
+    let oneWishlistDelete = $('[data-role="testing"]').val();
     $.ajax({
       url: "/wishlist/:delById",
       type: "DELETE",
       data: {
-        _id: oneGuestDelete,
+        _id: oneWishlistDelete,
       },
       success: function () {
         $('[data-role="wraperBooks"]').append(
