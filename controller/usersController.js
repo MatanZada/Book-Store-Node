@@ -9,12 +9,9 @@ const addUser = (userName, userPhone, userEmail, password, vip) => {
       password,
       vip,
     });
-    user
-      .save((err, userData) => {
-        userData ? resolve(userData) : reject(err);
-      })
-      .then((userData) => resolve(userData))
-      .catch((err) => reject(err));
+    user.save((err, userData) => {
+      userData ? resolve(userData) : reject(err);
+    });
   });
 };
 

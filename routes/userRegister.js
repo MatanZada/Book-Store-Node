@@ -6,7 +6,7 @@ router.post("/signup", (req, res) => {
   let { userName, userPhone, userEmail, password, vip } = req.body;
 
   addUser(userName, userPhone, userEmail, password, vip)
-    .then((usertDate) => res.json(usertDate))
+    .then((userDate) => res.json(userDate))
     .catch((error) => res.json(error));
   console.log(req.body);
 });
