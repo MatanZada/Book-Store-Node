@@ -7,9 +7,8 @@ async function registerUser(e) {
   const userPhone = document.getElementById("userPhone").value;
   const userEmail = document.getElementById("userEmail").value;
   const password = document.getElementById("password").value;
-  const isVip = document.getElementById("isVip").value;
-
-  let vip = isVip === "on" ? true : false;
+  const isVip = document.getElementById("isVip").checked;
+  let vip = isVip === true;
 
   fetch("/user", {
     method: "POST",
