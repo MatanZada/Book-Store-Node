@@ -1,6 +1,7 @@
-const express = require("express"),
-  router = express.Router(),
-  addUser = require("../controller/usersController");
+const express = require("express");
+const router = express.Router();
+
+const { addUser } = require("../controller/usersController");
 
 router.post("/signup", (req, res) => {
   let { userName, userPhone, userEmail, password, vip } = req.body;
