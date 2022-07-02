@@ -11,7 +11,7 @@ async function registerUser(e) {
 
   let vip = isVip === "on" ? true : false;
 
-  fetch("/signup", {
+  fetch("/user", {
     method: "POST",
     headers: {
       "content-type": "application/json",
@@ -25,24 +25,3 @@ async function registerUser(e) {
     }),
   }).then((res) => res.json());
 }
-// $(function () {
-//   let dataInput = {
-//     userName: $("#userName").val(),
-//     userPhone: $("#userPhone").val(),
-//     userEmail: $("#userEmail").val(),
-//     password: $("#password").val(),
-//     // isVip: $("#password").is(":checked"),
-//   };
-//   $('[data-role="save-input"]').click(function () {
-//     let dataInput = {
-//       userName: $("#userName").val(),
-//       userPhone: $("#userPhone").val(),
-//       userEmail: $("#userEmail").val(),
-//       password: $("#password").val(),
-//       // isVip: $("#password").is(":checked"),
-//     };
-//     $.post("/signup", dataInput, {
-//       dataInput,
-//     });
-//   });
-// });

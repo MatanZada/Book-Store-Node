@@ -3,7 +3,7 @@ const router = express.Router();
 
 const { addUser } = require("../controller/usersController");
 
-router.post("/signup", (req, res) => {
+router.post("/", (req, res) => {
   let { userName, userPhone, userEmail, password, vip } = req.body;
 
   addUser(userName, userPhone, userEmail, password, vip)

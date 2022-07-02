@@ -22,7 +22,7 @@ app.use(bodyParser.json());
 
 app.use("/wishlist", wishListRoute);
 app.use("/cart", routeCart);
-app.use("/", userRoute);
+app.use("/user", userRoute);
 app.use("/book", bookRoute);
 
 mongoose.connect("mongodb://localhost:27017/GreatLibrary").then(() => {
