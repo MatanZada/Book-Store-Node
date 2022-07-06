@@ -70,10 +70,9 @@ $('[data-role="getAllBooks"]').click(function () {
     const wrapperBooks = $('[data-role="books"]');
     const wrapperBook = $('[data-role="book"]');
     populateOptions(wrapperBooks, response);
-<<<<<<< HEAD
-=======
+
     populateOptionsWishlist(wrapperBook, response);
->>>>>>> cec2b7bc82a49ea12ee16afc9753bf27ef520815
+
   });
 });
 
