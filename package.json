@@ -18,7 +18,8 @@
         "joi": "17.6.0",
         "mongoose": "6.2.1",
         "path": "0.12.7",
-        "validator": "^13.7.0"
+        "validator": "^13.7.0",
+        "winston": "^3.7.2"
     },
     "devDependencies": {
         "chalk": "4.1.1",

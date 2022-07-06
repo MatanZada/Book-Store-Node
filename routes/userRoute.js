@@ -1,12 +1,13 @@
-const express = require("express"),
-  router = express.Router(),
-  addUser = require("../controller/usersController");
+const express = require("express");
+const router = express.Router();
 
-router.post("/signup", (req, res) => {
+const { addUser } = require("../controller/usersController");
+
+router.post("/", (req, res) => {
   let { userName, userPhone, userEmail, password, vip } = req.body;
 
   addUser(userName, userPhone, userEmail, password, vip)
-    .then((usertDate) => res.json(usertDate))
+    .then((userDate) => res.json(userDate))
     .catch((error) => res.json(error));
   console.log(req.body);
 });

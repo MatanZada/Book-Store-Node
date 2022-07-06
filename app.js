@@ -5,10 +5,11 @@ const express = require("express"),
   mongoose = require("mongoose"),
   bodyParser = require("body-parser");
 
- const routeCart = require("./routes/cartRoute");
-// const routeWishlist = require("./routes/wishListRoute");
-const userRegister = require("./routes/userRegister");
+const wishListRoute = require("./routes/wishlistRoute");
+const routeCart = require("./routes/cartRoute");
+const userRoute = require("./routes/userRoute");
 const bookRoute = require("./routes/bookRoute");
+const logger = require("./logger/logger");
 
 app.use(express.static("public"));
 app.use(express.json());
@@ -19,14 +20,14 @@ app.use(
 );
 app.use(bodyParser.json());
 
-  app.use("/cart", routeCart);
-// app.use("/whishlist", routeWishlist);
-app.use("/", userRegister);
+app.use("/wishlist", wishListRoute);
+app.use("/cart", routeCart);
+app.use("/user", userRoute);
 app.use("/book", bookRoute);
 
 mongoose.connect("mongodb://localhost:27017/GreatLibrary").then(() => {
   app.listen(port, () => {
-    console.info(
+    logger.info(
       `start server start listening on port http://localhost:${port}`
     );
   });

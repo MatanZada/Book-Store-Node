@@ -40,11 +40,40 @@ function populateOptions(selectElement, itratable) {
     });
   });
 }
+//post book to wishlist function
+function populateOptionsWishlist(selectElement, itratable) {
+  selectElement.html("");
+  $.each(itratable, function (_, itrateW) {
+    const divOfBookWishlist = $("<div/>");
+    divOfBookWishlist.text(itrateW.title, itrateW.description, itrateW.price);
+    divOfBookWishlist.attr("value", itrateW._id);
+    const addToWishlist = $("<button>add to wishlist</button>");
+    addToWishlist.attr("value", itrateW._id);
+    divOfBookWishlist.append(addToWishlist);
+    selectElement.append(divOfBookWishlist);
+    addToWishlist.click(function () {
+      const bookToWishlist = {
+        title: itrateW.title,
+        description: itrateW.description,
+      };
+
+      console.log(bookToWishlist);
+      $.post("/wishlist", { bookToWishlist }, (response) => {
+        console.log(response);
+      });
+    });
+  });
+}
 
 $('[data-role="getAllBooks"]').click(function () {
   $.get("/book", (response) => {
     const wrapperBooks = $('[data-role="books"]');
+    const wrapperBook = $('[data-role="book"]');
     populateOptions(wrapperBooks, response);
+<<<<<<< HEAD
+=======
+    populateOptionsWishlist(wrapperBook, response);
+>>>>>>> cec2b7bc82a49ea12ee16afc9753bf27ef520815
   });
 });
 
