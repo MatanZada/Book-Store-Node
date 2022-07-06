@@ -23,7 +23,7 @@ const insertBookToCart = (title) => {
       .catch((err) => reject(err));
   });
 };
-<<<<<<< HEAD
+
 
 const deleteBookFromCart = (_id) => {
   return new Promise((resolve, reject) => {
@@ -39,6 +39,5 @@ const deleteBookFromCart = (_id) => {
 
 module.exports = {getAllBooksInCart, insertBookToCart,deleteBookFromCart}
 
-=======
-module.exports = { getAllBooksInCart, insertBookToCart };
->>>>>>> cec2b7bc82a49ea12ee16afc9753bf27ef520815
+
+
