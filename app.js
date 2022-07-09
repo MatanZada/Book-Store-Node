@@ -9,6 +9,7 @@ const wishListRoute = require("./routes/wishlistRoute");
 const routeCart = require("./routes/cartRoute");
 const userRoute = require("./routes/userRoute");
 const bookRoute = require("./routes/bookRoute");
+const authicationRoute = require("./routes/authicationRoute");
 const logger = require("./logger/logger");
 
 app.use(express.static("public"));
@@ -24,6 +25,7 @@ app.use("/wishlist", wishListRoute);
 app.use("/cart", routeCart);
 app.use("/user", userRoute);
 app.use("/book", bookRoute);
+app.use("/authication", authicationRoute);
 
 mongoose.connect("mongodb://localhost:27017/GreatLibrary").then(() => {
   app.listen(port, () => {

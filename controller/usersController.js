@@ -15,6 +15,15 @@ const addUser = (userName, userPhone, userEmail, password, vip) => {
   });
 };
 
+const getAllUsers = () => {
+  return new Promise((resolve, reject) => {
+    User.find().then((userData) => {
+      userData ? resolve(userData) : reject(err);
+    });
+  });
+};
+
 module.exports = {
   addUser,
+  getAllUsers,
 };

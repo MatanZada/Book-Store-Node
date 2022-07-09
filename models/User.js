@@ -1,6 +1,7 @@
 const bcrypt = require("bcrypt");
 const mongoose = require("mongoose");
 const { isEmail } = require("validator");
+const jwt = require("jsonwebtoken");
 
 const userSchema = new mongoose.Schema(
   {
@@ -42,6 +43,13 @@ userSchema.pre("save", async function (next) {
     next(error);
   }
 });
+
+userSchema.methods.generateAuthToken = async function () {
+  //try using Camel notation here(User(U with uppercase))
+  const User = this;
+  const token = jwt.sign({ _id: User._id.toString() }, "thisisnewcourse");
+  return token;
+};
 
 const User = mongoose.model("User", userSchema);
 module.exports = User;
